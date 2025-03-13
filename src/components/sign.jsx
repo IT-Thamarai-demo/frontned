@@ -15,7 +15,6 @@ const schema = z.object({
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-
 const SignIn = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -35,9 +34,9 @@ const SignIn = () => {
       const response = await axios.post(`${API_URL}/api/users/register`, formData);
       alert("Registration successful! Please log in.");
       navigate("/login");
-      console.log(response)
+      console.log(response.data);
     } catch (error) {
-      setServerError(error.response?.data?.message || "Registration failed!");
+      setServerError(error.response?.data?.message || "Registration failed! Please try again.");
     } finally {
       setLoading(false);
     }
@@ -45,7 +44,7 @@ const SignIn = () => {
 
   return (
     <motion.div 
-      className="w-screen min-h-scrren flex flex-col justify-center items-center min-h-screen bg-gray-900 p-6"
+      className="w-screen min-h-screen flex flex-col justify-center items-center bg-gray-900 p-6"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
@@ -59,12 +58,12 @@ const SignIn = () => {
       >
         <h1 className="text-3xl font-bold">🚀 Welcome to Our TODO App!</h1>
         <p className="text-gray-400 mt-2 text-lg">
-          Sign up to access exclusive features, manage your profile, and stay connected with our community.
+          Sign up to access exclusive features and manage your tasks efficiently.
         </p>
       </motion.div>
 
       <motion.div 
-        className="bg-gray-800 p-8 rounded-lg shadow-lg w-96 text-white"
+        className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md text-white"
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
