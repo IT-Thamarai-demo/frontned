@@ -31,7 +31,8 @@ const SignIn = () => {
     setServerError("");
 
     try {
-      const response = await axios.post(`${API_URL}/api/users/register`, formData);
+      axios.post(`${process.env.REACT_APP_API_URL}/api/users/register`, userData);
+
       alert("Registration successful! Please log in.");
       navigate("/login");
       console.log(response.data);
