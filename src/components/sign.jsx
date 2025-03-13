@@ -35,6 +35,7 @@ const SignIn = () => {
       const response = await axios.post(`${API_URL}/api/users/register`, formData);
       alert("Registration successful! Please log in.");
       navigate("/login");
+      console.log(response)
     } catch (error) {
       setServerError(error.response?.data?.message || "Registration failed!");
     } finally {
