@@ -26,7 +26,7 @@ const Login = () => {
     setServerError("");
 
     try {
-      const response = await axios.post("http://localhost:3000/api/users/login", formData);
+      const response = await axios.post(`${API_URL}/api/users/login`, formData);
       localStorage.setItem("token", response.data.token);
       alert("Login successful!");
       navigate("/profile");

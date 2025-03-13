@@ -29,7 +29,7 @@ const SignIn = () => {
     setServerError("");
 
     try {
-      const response = await axios.post("http://localhost:3000/api/users/register", formData);
+      const response = await axios.post(`${API_URL}/api/users/register`, formData);
       alert("Registration successful! Please log in.");
       navigate("/login");
     } catch (error) {

@@ -5,6 +5,7 @@ import axios from "axios";
 
 const Profile = () => {
   const navigate = useNavigate();
+  const API_URL = process.env.REACT_APP_API_URL;
   const [users, setUsers] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [selectedEmail, setSelectedEmail] = useState("");
@@ -13,14 +14,14 @@ const Profile = () => {
   const [updatedTitle, setUpdatedTitle] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:3000/api/users")
+    axios.get(`${API_URL}/api/users`)
       .then(response => setUsers(response.data))
       .catch(error => console.error("Error fetching users:", error));
   }, []);
 
   useEffect(() => {
     if (selectedEmail) {
-      axios.get(`http://localhost:3000/api/tasks/${selectedEmail}`)
+      axios.get(`${API_URL}/api/tasks/${selectedEmail}`)
         .then(response => setTasks(response.data))
         .catch(error => console.error("Error fetching tasks:", error));
     } else {
@@ -39,7 +40,7 @@ const Profile = () => {
       return;
     }
     try {
-      const response = await axios.post("http://localhost:3000/api/tasks", {
+      const response = await axios.post(`${API_URL}/api/tasks`, {
         title: newTask,
         email: selectedEmail,
       });
@@ -52,7 +53,7 @@ const Profile = () => {
 
   const handleDeleteTask = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/api/tasks/${id}`);
+      await axios.delete(`${API_URL}/api/tasks/${id}`);
       setTasks(tasks.filter(task => task._id !== id));
     } catch (error) {
       console.error("Error deleting task:", error);
@@ -66,7 +67,7 @@ const Profile = () => {
 
   const handleUpdateTask = async (id) => {
     try {
-      const response = await axios.put(`http://localhost:3000/api/tasks/${id}`, {
+      const response = await axios.put(`${API_URL}/api/tasks/${id}`, {
         title: updatedTitle,
       });
       setTasks(tasks.map(task => task._id === id ? response.data : task));
