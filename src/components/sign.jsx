@@ -32,7 +32,7 @@ const SignIn = () => {
 
     try {
       axios.post(`https://backend-vrqs.onrender.com/api/users/register
-`, userData);
+`, formData);
 
       alert("Registration successful! Please log in.");
       navigate("/login");
