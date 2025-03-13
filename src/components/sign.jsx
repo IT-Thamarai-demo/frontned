@@ -13,6 +13,9 @@ const schema = z.object({
   password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
+const API_URL = process.env.REACT_APP_API_URL;
+
+
 const SignIn = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
