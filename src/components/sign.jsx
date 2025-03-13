@@ -36,7 +36,6 @@ const SignIn = () => {
 
       alert("Registration successful! Please log in.");
       navigate("/login");
-      console.log(response.data);
     } catch (error) {
       setServerError(error.response?.data?.message || "Registration failed! Please try again.");
     } finally {
