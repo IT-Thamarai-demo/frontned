@@ -31,7 +31,8 @@ const SignIn = () => {
     setServerError("");
 
     try {
-      axios.post(`${process.env.REACT_APP_API_URL}/api/users/register`, userData);
+      axios.post(`https://backend-vrqs.onrender.com/api/users/register
+`, userData);
 
       alert("Registration successful! Please log in.");
       navigate("/login");
