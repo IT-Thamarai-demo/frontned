@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
 import axios from "axios";
 
 const Profile = () => {
   const navigate = useNavigate();
-  const API_URL = process.env.REACT_APP_API_URL;
+  const API_URL = import.meta.envREACT_APP_API_URL;
   const [users, setUsers] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [selectedEmail, setSelectedEmail] = useState("");
